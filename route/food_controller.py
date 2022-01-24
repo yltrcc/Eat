@@ -1,8 +1,8 @@
 from flask import session, render_template, Flask, request, app, redirect, url_for, current_app, Blueprint, jsonify
 import json
 import math
-from DBcm import UseDatabase
-from checker import check_logged_in
+from utils.DBUtils import UseDatabase
+from module.checker import check_logged_in
 
 bp = Blueprint('food', __name__, url_prefix='/food')
 
@@ -67,7 +67,7 @@ def to_list() -> 'html':
         "page": page
     }
     # print(page_data)
-    return render_template('index.html', **page_data)
+    return render_template('food.html', **page_data)
 
 
 @bp.route('/add', methods=['GET'])

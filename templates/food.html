@@ -3,12 +3,12 @@
 {% block left_content %}
     <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
         <ul class="nav nav-sidebar">
-            <li>
+            <li class="active">
                 <a href="{{ url_for('food.to_list') }}">食物管理</a>
             </li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li class="active"><a href="{{ url_for('comment.to_list') }}">评论管理</a></li>
+            <li><a href="{{ url_for('comment.to_list') }}">评论管理</a></li>
         </ul>
         <ul class="nav nav-sidebar">
             <li><a href="{{ url_for('user.to_list') }}">用户管理</a></li>

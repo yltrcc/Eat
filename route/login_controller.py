@@ -1,6 +1,7 @@
 from flask import session, render_template, Flask, request, redirect, url_for, current_app, Blueprint, flash
-from DBcm import UseDatabase
-from member import Member
+from utils.DBUtils import UseDatabase
+from module.member import Member
+from module.checker import check_logged_in
 
 bp = Blueprint('login', __name__)
 
@@ -90,3 +91,7 @@ def do_logout() -> 'html':
         session.pop('member_id')
     return redirect(url_for('login.do_login'))
 
+@bp.route('/list', methods=['GET'])
+@check_logged_in
+def to_list() -> 'html':
+    return render_template('user.html')
