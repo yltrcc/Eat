@@ -1,0 +1,49 @@
+{% extends 'main_content_base.html' %}
+
+{% block main_content %}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8"/>#}
+{#    <title>添加食物</title>#}
+{#    <link rel="stylesheet" href="{{ url_for('static',filename ='css/style.css') }}">#}
+{#</head>#}
+{#<body>#}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+       <div class="row">
+            <div class="col-md-8">
+                <h1 class="page-header">添加</h1>
+                <form action="/food/add" method="post" autocomplete="off">
+                    <div class="form-group">
+                        <label for="category-name">食物名字</label>
+                        <input type="text" id="food_name" name="food_name" class="form-control" placeholder="在此处输入食物名字"
+                               required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-alias">食物能量</label>
+                        <input type="text" id="food_cal" name="food_cal" class="form-control" placeholder="在此处输入食物能量"
+                               required autocomplete="off">
+                    </div>
+                     <div class="form-group">
+                        <label for="category-alias">食物类型</label>
+                        <input type="text" id="food_style" name="taste" class="form-control" placeholder="在此处输入食物类型"
+                               required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-keywords">食物地理位置</label>
+                        <input type="text" id="food_location" name="location" class="form-control"
+                               placeholder="在此处输入食物地理位置" autocomplete="off">
+                    </div>
+                    <button class="btn btn-primary" type="submit" name="submit">添加</button>
+                </form>
+            </div>
+        </div>
+			<div id="footer">
+				<div id="footer_bg">
+					<a href="{{ url_for('food.to_list') }}">跳转到首页</a>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{#</body>#}
+{#</html>#}

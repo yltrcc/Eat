@@ -1,0 +1,126 @@
+{% extends 'main_content_base.html' %}
+
+{% block main_content %}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#    <head>#}
+{#        <meta charset="UTF-8">#}
+{#        <title>修改</title>#}
+{#        <script type="text/javascript" src="{{ url_for('static', filename='plugins/jquery-3.5.1.min.js') }}"></script>#}
+{#        <link rel="stylesheet" href="{{ url_for('static',filename ='css/style.css') }}">#}
+{#    </head>#}
+{#    <body>#}
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="page-header">修改</h1>
+                <form action="/food/update" method="post" autocomplete="off">
+                    <div class="form-group">
+                        <label for="category-name">请输入要修改的食物名字</label>
+                        <input type="text" id="food_name" name="food_name" class="form-control" placeholder="在此处输入食物名字"
+                               value="{{ food.food_name }}" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-name">食物编号</label>
+                        <input type="text" id="food_id" name="food_id" class="form-control"
+                               value="{{ food.food_id }}" readonly="readonly" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-alias">请输入要修改的食物能量</label>
+                        <input type="text" id="food_cal" name="food_cal" class="form-control" placeholder="在此处输入食物能量"
+                               value="{{ food.food_cal }}" required autocomplete="off">
+                    </div>
+                     <div class="form-group">
+                        <label for="category-alias">请输入要修改的食物类型</label>
+                        <input type="text" id="food_style" name="taste" class="form-control" placeholder="在此处输入食物类型"
+                               value="{{ food.taste }}" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="category-keywords">请输入要修改的食物地理位置</label>
+                        <input type="text" id="food_location" name="location" class="form-control"
+                               placeholder="在此处输入食物地理位置" value="{{ food.location }}" autocomplete="off">
+                    </div>
+                    <button class="btn btn-primary" type="submit" name="submit">确定</button>
+                </form>
+            </div>
+        </div>
+{#    <h1 class="page-header">Update</h1>#}
+{#        <div id="wrap">#}
+{#			<div id="top_content">#}
+{#					<div id="header">#}
+{#						<div id="rightheader">#}
+{#							<p>#}
+{#								<a href="{{ url_for('login.do_logout') }}">退出</a>#}
+{#								<br />#}
+{#							</p>#}
+{#						</div>#}
+{#						<div id="topheader">#}
+{#							<h1 id="title">#}
+{#								<a href="#">今天吃什么</a>#}
+{#							</h1>#}
+{#						</div>#}
+{#						<div id="navigation">#}
+{#						</div>#}
+{#					</div>#}
+{#				<div id="content">#}
+{#					<p id="whereami">#}
+{#					</p>#}
+{#					<form action="/food/update" method="post">#}
+{#						<table cellpadding="0" cellspacing="0" border="0"#}
+{#							class="form_table">#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#									请输入要修改的食物名字:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="text" placehoder="请输入名字" name="food_name" value="{{ food.food_name }}"/>#}
+{#								</td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#									请输入要修改的食物编号:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="text" placehoder="请输入编号" name="food_id" value="{{ food.food_id }}" readonly="readonly"/>#}
+{#								</td>#}
+{#							</tr>#}
+{#                            <tr>#}
+{#								<td valign="middle" align="right">#}
+{#									请输入要修改的食物能量:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="text" placehoder="请输入能量值" name="food_cal" value="{{ food.food_cal }}"/>#}
+{#								</td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#									请输入要修改的食物类型:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="text" placehoder="请输入美食类型" name="taste" value="{{ food.taste }}"/>#}
+{#								</td>#}
+{#							</tr>#}
+{#                            <tr>#}
+{#								<td valign="middle" align="right">#}
+{#									请输入要修改的食物地理位置:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="text" placehoder="请输入地理位置" name="location" value="{{ food.location }}"/>#}
+{#								</td>#}
+{#							</tr>#}
+{#						</table>#}
+{#						<p>#}
+{#							<input type="submit" class="button" value="确定" />#}
+{#						</p>#}
+{#					</form>#}
+{#				</div>#}
+{#			</div>#}
+			<div id="footer">
+				<div id="footer_bg">
+                    <a href="{{ url_for('food.to_list') }}">跳转到首页</a>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{#	</body>#}
+{#</html>#}

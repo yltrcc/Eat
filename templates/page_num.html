@@ -1,0 +1,163 @@
+<div class="col-sm-12 col-md-7">
+	<div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+		<ul class="pagination float-right">
+			{# 上一页 #}
+			{% if page.current_page <= 1 %}
+			<li class="paginate_button page-item previous disabled" id="example2_previous">
+				<a href="javascript:;" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">上一页</a>
+			</li>
+			{% else %}
+			<li class="paginate_button page-item previous" id="example2_previous">
+				<a href="javascript:;" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link" onclick="toPageNum( {{page.current_page - 1 }} )">上一页</a>
+			</li>
+			{% endif %}
+
+			{# 中间六页 #}
+			{% if page.total_page <= 6 %}
+				{# 总页码数小于等于6个页时 #}
+				<li class="paginate_button page-item {% if page.total_page < 1 %}disabled{% endif %} {% if page.current_page == 1 %}active{% endif %}">
+					<a href="javascript:;" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link" onclick="toPageNum(1)">1</a>
+				</li>
+				<li class="paginate_button page-item {% if page.total_page < 2 %}disabled{% endif %} {% if page.current_page == 2 %}active{% endif %}">
+					<a href="javascript:;" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link" onclick="toPageNum(2)">2</a>
+				</li>
+				<li class="paginate_button page-item {% if page.total_page < 3 %}disabled{% endif %} {% if page.current_page == 3 %}active{% endif %}">
+					<a href="javascript:;" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link" onclick="toPageNum(3)">3</a>
+				</li>
+				<li class="paginate_button page-item {% if page.total_page < 4 %}disabled{% endif %} {% if page.current_page == 4 %}active{% endif %}">
+					<a href="javascript:;" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link" onclick="toPageNum(4)">4</a>
+				</li>
+				<li class="paginate_button page-item {% if page.total_page < 5 %}disabled{% endif %} {% if page.current_page == 5 %}active{% endif %}">
+					<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum(5)">5</a>
+				</li>
+				<li class="paginate_button page-item {% if page.total_page < 6 %}disabled{% endif %} {% if page.current_page == 6 %}active{% endif %}">
+					<a href="javascript:;" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link" onclick="toPageNum(6)">6</a>
+				</li>
+			{% else %}
+				{# 总页码数大于6个页时 #}
+				{% if (page.current_page - 1) <= 1 %}
+					<li class="paginate_button page-item {% if page.current_page == 1 %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link" onclick="toPageNum(1)">1</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == 2 %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link" onclick="toPageNum(2)">2</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == 3 %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link" onclick="toPageNum(3)">3</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == 4 %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link" onclick="toPageNum(4)">4</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == 5 %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum(5)">5</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">...</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page}} )">{{page.total_page}}</a>
+					</li>
+				{% elif (page.current_page - 2) == 1 %}
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link" onclick="toPageNum(1)">1</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">...</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == 3 %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link" onclick="toPageNum(3)">3</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == 4 %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link" onclick="toPageNum(4)">4</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == 5 %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum(5)">5</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">...</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page}} )">{{page.total_page}}</a>
+					</li>
+				{% elif (page.current_page + 2) == page.total_page %}
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link" onclick="toPageNum(1)">1</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">...</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == (page.total_page-4) %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page-4}} )">{{page.total_page-4}}</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == (page.total_page-3) %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page-3}} )">{{page.total_page-3}}</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == (page.total_page-2) %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page-2}} )">{{page.total_page-2}}</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">...</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page}} )">{{page.total_page}}</a>
+					</li>
+				{% elif (page.current_page + 1) >= page.total_page %}
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link" onclick="toPageNum(1)">1</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">...</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == (page.total_page-4) %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page-4}} )">{{page.total_page-4}}</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == (page.total_page-3) %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page-3}} )">{{page.total_page-3}}</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == (page.total_page-2) %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page-2}} )">{{page.total_page-2}}</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == (page.total_page-1) %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page-1}} )">{{page.total_page-1}}</a>
+					</li>
+					<li class="paginate_button page-item {% if page.current_page == page.total_page %}active{% endif %}">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page}} )">{{page.total_page}}</a>
+					</li>
+				{% else %}
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link" onclick="toPageNum(1)">1</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">...</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link" onclick="toPageNum( {{page.current_page-1}} )">{{page.current_page-1}}</a>
+					</li>
+					<li class="paginate_button page-item active">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link" onclick="toPageNum( {{page.current_page}} )">{{page.current_page}}</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum( {{page.current_page+1}} )">{{page.current_page+1}}</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">...</a>
+					</li>
+					<li class="paginate_button page-item">
+						<a href="javascript:;" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link" onclick="toPageNum( {{page.total_page}} )">{{page.total_page}}</a>
+					</li>
+				{% endif %}
+			{% endif %}
+
+			{# 下一页 #}
+			{% if page.current_page >= page.total_page %}
+			<li class="paginate_button page-item next disabled" id="example2_next">
+				<a href="javascript:;" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">下一页</a>
+			</li>
+			{% else %}
+			<li class="paginate_button page-item next" id="example2_next">
+				<a href="javascript:;" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link" onclick="toPageNum( {{page.current_page + 1 }} )">下一页</a>
+			</li>
+			{% endif %}
+		</ul>
+	</div>
+</div>

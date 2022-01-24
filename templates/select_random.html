@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>随机选择</title>
+		<style type="text/css">
+			*{
+				padding: 0;
+			}
+			.top-div{
+				height: 50px;
+				background-color: #ff6265;
+			}
+			.top-div>p{
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				font-size: 30px;
+				font-family: "黑体";
+			}
+			.outer{
+				width: 500px;
+				height:400px;
+				margin: 20px auto;
+				border: #000000 1px solid;
+				box-shadow: 0 0 5px 5px gray;
+			}
+			h1{
+				display: block;
+				width: 100px;
+				height: 60px;
+				line-height: 60px;
+				text-align: center;
+				background-color: #c1f2ff;
+				margin: 50px auto;
+			}
+			#name{
+				display: block;
+				width: 80%;
+				height: 60px;
+				line-height: 60px;
+				font-size: 40px;
+				text-align: center;
+				margin: 50px auto;
+				border-radius: 15px;
+				outline: none;
+			}
+			p,p>input{
+				display: block;
+				width: 200px;
+				height: 60px;
+				line-height: 60px;
+				font-size: 40px;
+				text-align: center;
+				margin: 50px auto;
+				border: none;
+				border-radius: 15px;
+				outline: none;
+			}
+			p>input:hover{
+				/* background-color: #0000FF; */
+				background-image: linear-gradient(to right, #95fff8, #f5ff7e, #acffb3, #fdb4ff, #ffb9d5);
+			}
+		</style>
+	</head>
+	<body>
+    <form action="/food/select" method="get" id="listForm">
+		<div class="top-div">
+			<p>随机选菜器</p>
+            <a href="{{ url_for('login.do_logout') }}">退出登录</a>
+		</div>
+		<div class="outer">
+			<h1>选菜</h1>
+			<input type="text" id="name" value="" />
+			<p>
+                <input type="button" name="" id="btn" value="start" onclick="start()" />
+            </p>
+		</div>
+
+		<script type="text/javascript">
+			//随机物品数组
+			let prizeArray = ["热干面","烤肉饭","柳州螺蛳粉","大碗面","纸上烤肉","宫保鸡丁","大碗宽","水果捞","麻辣烫","郭家面食","自助",
+                "自助","重庆小面","泡面食堂","木桶饭","鸡排饭","烤肉饭","火锅","火锅","马玉涛麻辣烫","兰州拉面","自助烧烤","甜点屋",
+                "炸土豆","蛋包洋芋","蛋包糯米饭","火锅米线","煎饼果子","酸辣粉","酸辣粉","小笼包"];
+
+			//获取随机数
+			let timer = null;
+			//选择奖品
+			function choice(){
+				let index = Math.floor(Math.random()*prizeArray.length);
+				let prize = prizeArray[index];
+				let pr = document.getElementById("name");
+				pr.value = prize;
+				timer = setTimeout(choice,50);
+			}
+			//关闭定时器
+			function stop(){
+				//关闭定时器
+				clearTimeout(timer);
+				//重置定时器为null
+				timer =null;
+			}
+			//获取按钮对象
+			let btn = document.getElementById("btn");
+			//点击开始按钮
+			function start(){
+				//如果计时器为空，则开始选择，并将按钮显示变为stop,颜色改为红色
+				if(timer == null){
+					choice();
+					btn.value="stop";
+					btn.style.color="red";
+				}else{//重新点击后关闭计时器，并将按钮显示变为start，颜色改为黑色
+					stop();
+					btn.value="start";
+					btn.style.color="black";
+				}
+			}
+		</script>
+    </form>
+    </body>
+</html>

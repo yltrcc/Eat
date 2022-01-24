@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>今天吃什么饭</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename ='css/bootstrap.min.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename ='css/style.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename ='css/login.css') }}">
+		<link rel="apple-touch-icon-precomposed" href="{{ url_for('static',filename ='images/icon/icon.png') }}">
+		<link rel="shortcut icon" href="{{ url_for('static',filename ='images/icon/favicon.ico') }}">
+		<script src="{{ url_for('static',filename ='js/jquery-2.1.4.min.js') }}"></script>
+	</head>
+    <body class="user-select">
+		<div class="container">
+			<div class="siteIcon">
+				<img src="{{ url_for('static',filename ='images/icon/icon.jpg') }}" alt="" data-toggle="tooltip" data-placement="top" title="欢迎来到今天吃什么饭系统" draggable="false" />
+			</div>
+			<form action="/regist" method="post" autocomplete="off" class="form-signin">
+				<h2 class="form-signin-heading">注册</h2>
+				<label for="userName" class="sr-only">用户名</label>
+				<input type="text" name="login_name" class="form-control user-name" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10" />
+                <label for="userName" class="sr-only">真实姓名</label>
+				<input type="text" name="user_name" class="form-control user-name" placeholder="请输入真实姓名" required autofocus autocomplete="off" maxlength="10" />
+				<label for="userPwd" class="sr-only">密码</label>
+				<input type="password" name="pwd" class="form-control pwd" placeholder="请输入密码" required autocomplete="off" maxlength="18" />
+				<label for="userName" class="sr-only">确认密码</label>
+				<input type="password" name="pwd2" class="form-control user-name" placeholder="请确认密码" required autocomplete="off" maxlength="18" />
+                <label for="userName" class="sr-only">电话</label>
+				<input type="text" name="tel" class="form-control user-name" placeholder="请输入电话" required autofocus autocomplete="off" maxlength="20" />
+                <tr>
+                    <td valign="middle" align="right">
+                        性别:
+                    </td>
+                    <td valign="middle" align="left">
+                        男
+                        <input type="radio" class="inputgri" name="sex" value="m" checked="checked"/>
+                        女
+                        <input type="radio" class="inputgri" name="sex" value="f"/>
+                    </td>
+                </tr>
+                {% if errormsg is defined %}
+                    <tr>
+                        <td valign="middle" align="right">
+                        </td>
+                        <td valign="middle" align="left" class="error-msg">
+                            {{errormsg}}
+                        </td>
+                    </tr>
+                {% endif %}
+                <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+			</form>
+			<div class="footer">
+				<p>
+					<a href="{{ url_for('login.do_logout') }}" data-toggle="tooltip" data-placement="left" title="不知道自己在哪?">去登录 →</a>
+				</p>
+			</div>
+		</div>
+		<script type="text/javascript" src="{{ url_for('static',filename ='js/bootstrap.min.js') }}"></script>
+		<script type="text/javascript">
+			$('[data-toggle="tooltip"]').tooltip();
+			window.oncontextmenu = function(){
+				//return false;
+			};
+			$('.siteIcon img').click(function(){
+				window.location.reload();
+			});
+			$('#signinSubmit').click(function(){
+				if($('#userName').val() === ''){
+					$(this).text('用户名不能为空');
+				}else if($('#userPwd').val() === ''){
+					$(this).text('密码不能为空');
+				}else{
+					$(this).text('请稍后...');
+				}
+			});
+		</script>
+	</body>
+{#	<body>#}
+{#		<div id="wrap">#}
+{#			<div id="top_content">#}
+{#				<div id="header">#}
+{#					<div id="rightheader">#}
+{#						<p>#}
+{#							<a href="{{ url_for('login.do_logout') }}">登录</a>#}
+{#							<br />#}
+{#						</p>#}
+{#					</div>#}
+{#					<div id="topheader">#}
+{#						<h1 id="title">#}
+{#							<a href="#">今天吃什么</a>#}
+{#						</h1>#}
+{#					</div>#}
+{#					<div id="navigation">#}
+{#					</div>#}
+{#				</div>#}
+{#				<div id="content">#}
+{#					<p id="whereami">#}
+{#					</p>#}
+{#					<h1>#}
+{#						注册#}
+{#					</h1>#}
+{#					<form action="/regist" method="POST">#}
+{#						<table cellpadding="0" cellspacing="0" border="0"#}
+{#							class="form_table">#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#									登录名:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="text" class="inputgri" name="login_name" />#}
+{#								</td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#									真实姓名:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="text" class="inputgri" name="user_name" />#}
+{#								</td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#									密码:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="password" class="inputgri" name="pwd" />#}
+{#								</td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#									确认密码:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="password" class="inputgri" name="pwd2" />#}
+{#								</td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#									电话:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									<input type="text" class="inputgri" name="tel" />#}
+{#								</td>#}
+{#							</tr>#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#									性别:#}
+{#								</td>#}
+{#								<td valign="middle" align="left">#}
+{#									男#}
+{#									<input type="radio" class="inputgri" name="sex" value="m" checked="checked"/>#}
+{#									女#}
+{#									<input type="radio" class="inputgri" name="sex" value="f"/>#}
+{#								</td>#}
+{#							</tr>#}
+{#							{% if errormsg is defined %}#}
+{#							<tr>#}
+{#								<td valign="middle" align="right">#}
+{#								</td>#}
+{#								<td valign="middle" align="left" class="error-msg">#}
+{#									{{errormsg}}#}
+{#								</td>#}
+{#							</tr>#}
+{#							{% endif %}#}
+{#						</table>#}
+{#						<p>#}
+{#							<input type="submit" class="button" value="注册 " />#}
+{#						</p>#}
+{#					</form>#}
+{#				</div>#}
+{#			</div>#}
+{#			<div id="footer">#}
+{#				<div id="footer_bg">#}
+{##}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+{#	</body>#}
+</html>

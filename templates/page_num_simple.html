@@ -1,0 +1,52 @@
+				<div class="clearfix">
+					<ul class="pagination pagination-sm m-0 float-right">
+						{# 首页 #}
+						{% if page.current_page <= 1 %}
+							<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}">&laquo;&laquo;</a></li>
+						{% else %}
+							<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{ 1 }} )">&laquo;&laquo;</a></li>
+						{% endif %}
+
+						{# 上一页 #}
+						{% if page.current_page <= 1 %}
+							<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}">&laquo;</a></li>
+						{% else %}
+							<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{page.current_page - 1 }} )">&laquo;</a></li>
+						{% endif %}
+						
+						{# 中间三页 #}
+						{% if page.current_page == 1 %}
+							<li class="page-item active"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( 1 )">{{page.current_page}}</a></li>
+							<li class="page-item {% if page.total_page < 2 %}disabled{% endif %}"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( 2 )">2</a></li>
+							<li class="page-item {% if page.total_page < 3 %}disabled{% endif %}"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( 3 )">3</a></li>
+						{% elif page.current_page == 2 %}
+							<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( 1 )">1</a></li>
+							<li class="page-item active"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( 2 )">2</a></li>
+							<li class="page-item {% if page.total_page < 3 %}disabled{% endif %}"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( 3 )">3</a></li>
+						{% else %}
+							{% if page.current_page == page.total_page %}
+								<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{page.total_page-2}} )">{{page.total_page-2}}</a></li>
+								<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{page.total_page-1}} )">{{page.total_page-1}}</a></li>
+								<li class="page-item active"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{page.total_page}} )">{{page.total_page}}</a></li>
+							{% else %}
+								<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{page.total_page-1}} )">{{page.total_page-1}}</a></li>
+								<li class="page-item active"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{page.total_page}} )">{{page.total_page}}</a></li>
+								<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{page.total_page+1}} )">{{page.total_page+1}}</a></li>
+							{% endif %}
+						{% endif %}
+
+						{# 下一页 #}
+						{% if page.current_page >= page.total_page %}
+							<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}">&raquo;</a></li>
+						{% else %}
+							<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{page.current_page + 1 }} )">&raquo;</a></li>
+						{% endif %}
+
+						{# 尾页 #}
+						{% if page.current_page >= page.total_page %}
+							<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}">&raquo;&raquo;</a></li>
+						{% else %}
+							<li class="page-item"><a class="page-link" href="{{ url_for('static',filename ='javascript:;') }}" onclick="toPageNum( {{page.total_page }} )">&raquo;&raquo;</a></li>
+						{% endif %}
+					</ul>
+				</div>
