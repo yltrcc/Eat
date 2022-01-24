@@ -13,18 +13,12 @@ def to_list() -> 'html':
     评论列表页面
     :return:
     """
-    keywords = request.args.get('keywords', '')
-    keywords = keywords.rstrip().lstrip()
     page_num = request.args.get("page_num", type=str, default=1)
     page_num = int(page_num)
     page_size = request.args.get("page_size", type=str, default=5)
     page_size = int(page_size)
-    _SQL = "SELECT food_id, food_name, food_cal, taste, location, recorde, add_time FROM tb_food "
+    _SQL = "SELECT id, comment, user_id, food_id, create_time FROM tb_comment "
     params = []
-    if len(keywords) > 0:
-        _SQL += " WHERE food_name LIKE %s OR food_id = %s"
-        params.append("%%%s%%" % keywords)
-        params.append(keywords)
     _SQL += """LIMIT %s, %s """
     params.append((page_num - 1) * page_size)
     params.append(page_size)
@@ -41,18 +35,12 @@ def to_list() -> 'html':
     # print(objs)
     # 查询总记录数
     params = []
-    _SQL = 'select count(food_id) as num from tb_food '
+    _SQL = 'select count(id) as num from tb_comment '
     params = []
-    if len(keywords) > 0:
-        _SQL += " WHERE food_name LIKE %s OR food_id = %s"
-        params.append("%%%s%%" % keywords)
-        params.append(keywords)
     with UseDatabase(current_app.config['dbconfig']) as cursor:
         cursor.execute(_SQL, tuple(params))
         datas = cursor.fetchall()
-    # print('datas=' + str(datas))
     total_count = datas[0][0]
-    # print('total_count=' + str(total_count))
     total_page = total_count / page_size
     total_page = math.floor(total_page)
     if total_count % page_size != 0:
@@ -61,10 +49,9 @@ def to_list() -> 'html':
     page = {'current_page': page_num, 'page_size': page_size, 'total_page': total_page, 'total_count': total_count,
             'content': objs}
     page_data = {
-        "keywords": keywords,
         "page": page
     }
-    return render_template('comment.html', **page_data)
+    return render_template('comment/comment.html', **page_data)
 
 
 

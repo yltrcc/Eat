@@ -8,4 +8,4 @@ bp = Blueprint('api', __name__, url_prefix='/api')
 @bp.route('/hello', methods=['GET'])
 def to_regist() -> 'html':
     """到注册页面，如果已经注册过了直接到登录页面"""
-    return render_template('regist.html')
+    return render_template('base/regist.html')

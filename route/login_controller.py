@@ -9,7 +9,7 @@ bp = Blueprint('login', __name__)
 @bp.route('/regist', methods=['GET'])
 def to_regist() -> 'html':
     """到注册页面，如果已经注册过了直接到登录页面"""
-    return render_template('regist.html')
+    return render_template('base/regist.html')
 
 
 @bp.route('/regist', methods=['POST'])
@@ -28,10 +28,10 @@ def do_regist() -> 'html':
                                                                              sex))
     if not all([username, password, password, password2, sex]):
         # flash('参数不完整')
-        return render_template('regist.html', errormsg='参数不完整', username=username)
+        return render_template('base/regist.html', errormsg='参数不完整', username=username)
     elif password != password2:
         # flash('两次密码不一致，请重新输入')
-        return render_template('regist.html', errormsg='两次密码不一致，请重新输入', username=username)
+        return render_template('base/regist.html', errormsg='两次密码不一致，请重新输入', username=username)
     with UseDatabase(current_app.config['dbconfig']) as cursor:
         _SQL = "select count(user_id) as num from tb_user where login_name = %s"
         cursor.execute(_SQL, (login_name, ))
@@ -40,7 +40,7 @@ def do_regist() -> 'html':
         count = result[0][0]
         print(count)
     if count >= 1:
-        return render_template('regist.html', errormsg='用户名重复', username=username)
+        return render_template('base/regist.html', errormsg='用户名重复', username=username)
     with UseDatabase(current_app.config['dbconfig']) as cursor:
         _SQL = "insert into tb_user (user_name, login_name, pwd, sex, `identity`, `tel`, `state`, `add_time`) " \
                "values (%s, %s, %s, %s, %s, %s, %s, NOW())"
@@ -53,7 +53,7 @@ def to_login() -> 'html':
     """到登录页面，如果已经登录过了直接到食物列表页面"""
     if 'logged_in' in session:
         return redirect(url_for('food.to_list'))
-    return render_template('login.html')
+    return render_template('base/login.html')
 
 
 @bp.route('/login', methods=['POST'])
@@ -69,7 +69,7 @@ def do_login() -> 'html':
         cursor.execute(_SQL, (username, password))
         result = cursor.fetchall()
     if len(result) != 1:
-        return render_template('login.html', errormsg='用户名或密码错误', username=username, password=password)
+        return render_template('base/login.html', errormsg='用户名或密码错误', username=username, password=password)
     member = Member(*result[0])
     session['logged_in'] = True
     session['login_type'] = 'member'
@@ -94,4 +94,4 @@ def do_logout() -> 'html':
 @bp.route('/list', methods=['GET'])
 @check_logged_in
 def to_list() -> 'html':
-    return render_template('user.html')
+    return render_template('user/user.html')

@@ -1,4 +1,4 @@
-{% extends 'base_content.html' %}
+{% extends 'base/base_content.html' %}
 
 {% block left_content %}
     <aside class="col-sm-3 col-md-2 col-lg-2 sidebar">
@@ -84,7 +84,7 @@
                 <div class="dataTables_info" role="status" aria-live="polite">共 {{ page.total_count }} 条记录</div>
             </div>
             {# 引入页码页面 #}
-            {% include 'page_num.html' %}
+            {% include 'base/page_num.html' %}
         </div>
     </div>
 {% endblock %}

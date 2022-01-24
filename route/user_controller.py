@@ -9,4 +9,4 @@ bp = Blueprint('user', __name__, url_prefix='/user')
 @bp.route('/list', methods=['GET'])
 @check_logged_in
 def to_list() -> 'html':
-    return render_template('user.html')
+    return render_template('user/user.html')

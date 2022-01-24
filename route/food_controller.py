@@ -67,7 +67,7 @@ def to_list() -> 'html':
         "page": page
     }
     # print(page_data)
-    return render_template('food.html', **page_data)
+    return render_template('food/food.html', **page_data)
 
 
 @bp.route('/add', methods=['GET'])
@@ -76,7 +76,7 @@ def to_add() -> 'html':
     跳转到新增页面
     :return:
     """
-    return render_template('add.html')
+    return render_template('food/food_add.html')
 
 
 @bp.route('/add', methods=['POST'])
@@ -131,7 +131,7 @@ def to_update() -> 'html':
         objs.append(obj)
     food = objs[0]
     # print(food)
-    return render_template('update.html', food=food)
+    return render_template('food/food_update.html', food=food)
 
 
 @bp.route('/update', methods=['POST'])
@@ -208,7 +208,7 @@ def to_detail() -> 'html':
             obj[column_name_list[i]] = item
         objs.append(obj)
     food = objs[0]
-    return render_template('detail.html', food=food)
+    return render_template('food/food_detail.html', food=food)
 
 
 @bp.route('/select', methods=['GET'])
