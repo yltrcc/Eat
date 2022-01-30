@@ -53,10 +53,10 @@ CREATE TABLE `tb_food` (
 -- Records of tb_food
 -- ----------------------------
 INSERT INTO `tb_food`
-(`food_name`, `food_cal`, `taste`, `location`, `recorde`, `add_time`)
+(`food_name`, `food_cal`, `taste`, `location`, `recorde`, `add_time`, `user_id`)
 VALUES
-('羊肉粉', '100KJ', '酸、甜', '二食堂一楼', null, '2021-05-08 13:04:45'),
-('马玉涛麻辣烫', '200KJ', '清汤、辣', '二食堂二楼', null, '2021-05-08 13:06:24')
+('羊肉粉', '100KJ', '酸、甜', '二食堂一楼', null, '2021-05-08 13:04:45', 1),
+('马玉涛麻辣烫', '200KJ', '清汤、辣', '二食堂二楼', null, '2021-05-08 13:06:24', 1)
 ;
 
 -- ----------------------------
