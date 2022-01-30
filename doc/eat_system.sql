@@ -104,3 +104,12 @@ VALUES
 ('张三', 'zhangsan', '123456', '男', '管理员', '13875909988', 0, '2021-05-08 12:56:24'),
 ('李四', 'lisi', '123467', '男', '学生', '13908710034', 0, '2021-05-08 12:59:26')
 ;
+
+CREATE TABLE `tb_collect` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL COMMENT '用户主键',
+  `food_id` int(11) NOT NULL COMMENT '食物主键',
+  `create_time` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_name` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
