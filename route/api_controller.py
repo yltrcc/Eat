@@ -133,6 +133,7 @@ def getCollect() -> 'json':
     params = []
     _SQL = 'select count(food_id) as num from tb_food  where food_id in ( select DISTINCT food_id from tb_collect where user_id = %s) '
     params = []
+    params.append(user_id)
     with UseDatabase(current_app.config['dbconfig']) as cursor:
         cursor.execute(_SQL, tuple(params))
         datas = cursor.fetchall()
@@ -167,7 +168,7 @@ def getComment() -> 'json':
     if user_id:
         _SQL += "where user_id = %s "
         params.append(user_id)
-    _SQL += """LIMIT %s, %s """
+    _SQL += """ORDER BY id desc LIMIT %s, %s"""
     params.append((page_num - 1) * page_size)
     params.append(page_size)
     with UseDatabase(current_app.config['dbconfig']) as cursor:
