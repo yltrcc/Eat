@@ -247,7 +247,12 @@ def saveCollect() -> 'json':
     params.append(foodId)
     with UseDatabase(current_app.config['dbconfig']) as cursor:
         cursor.execute(_SQL, tuple(params))
-
+    if foodId:
+        _SQL = """update tb_food set collect_count = collect_count + 1 where food_id = %s"""
+        params = []
+        params.append(foodId)
+        with UseDatabase(current_app.config['dbconfig']) as cursor:
+            cursor.execute(_SQL, tuple(params))
     return jsonify({
         'success': True,
     })
@@ -266,6 +271,12 @@ def saveLike() -> 'json':
     with UseDatabase(current_app.config['dbconfig']) as cursor:
         cursor.execute(_SQL, tuple(params))
 
+    if foodId:
+        _SQL = """update tb_food set like_count = like_count + 1 where food_id = %s"""
+        params = []
+        params.append(foodId)
+        with UseDatabase(current_app.config['dbconfig']) as cursor:
+            cursor.execute(_SQL, tuple(params))
     return jsonify({
         'success': True,
     })

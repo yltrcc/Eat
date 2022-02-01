@@ -27,7 +27,7 @@ def to_list() -> 'html':
         _SQL += " WHERE food_name LIKE %s OR food_id = %s"
         params.append("%%%s%%" % keywords)
         params.append(keywords)
-    _SQL += """ ORDER BY concat( like_count, collect_count ) LIMIT %s, %s """
+    _SQL += """ ORDER BY concat( like_count, collect_count ) desc LIMIT %s, %s """
     params.append((page_num - 1) * page_size)
     params.append(page_size)
     with UseDatabase(current_app.config['dbconfig']) as cursor:
@@ -35,10 +35,13 @@ def to_list() -> 'html':
         rows = cursor.fetchall()
         column_name_list = [i[0] for i in cursor.description]
     objs = []
+    line = 1
     for r in rows:
         obj = {}
         for i, item in enumerate(r):
             obj[column_name_list[i]] = item
+        obj['line'] = line
+        line = line + 1
         objs.append(obj)
     # print(objs)
     # 查询总记录数
