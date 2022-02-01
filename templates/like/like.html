@@ -11,7 +11,7 @@
             <li><a href="{{ url_for('comment.to_list') }}">评论管理</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li ><a href="{{ url_for('user.to_list') }}">用户管理</a></li>
+            <li><a href="{{ url_for('user.to_list') }}">用户管理</a></li>
         </ul>
         <ul class="nav nav-sidebar">
             <li class="active"><a href="{{ url_for('like.to_list') }}">数据统计</a></li>
@@ -46,6 +46,12 @@
                 <td>
                     食物地理位置
                 </td>
+                <td>
+                    食物喜爱数
+                </td>
+                <td>
+                    食物收藏数
+                </td>
             </tr>
             </thead>
             <tbody>
@@ -58,6 +64,8 @@
                     <td>{{ food.food_cal }}卡路里</td>
                     <td>{{ food.taste }}</td>
                     <td>{{ food.location }}</td>
+                    <td>{{ food.like_count }}</td>
+                    <td>{{ food.collect_count }}</td>
                 </tr>
             {% endfor %}
             </tbody>

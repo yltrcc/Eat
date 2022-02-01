@@ -21,13 +21,13 @@ def to_list() -> 'html':
     page_num = int(page_num)
     page_size = request.args.get("page_size", type=str, default=5)
     page_size = int(page_size)
-    _SQL = "SELECT food_id, food_name, food_cal, taste, location, recorde, add_time FROM tb_food "
+    _SQL = "SELECT food_id, food_name, food_cal, taste, location, recorde, add_time, like_count, collect_count FROM tb_food "
     params = []
     if len(keywords) > 0:
         _SQL += " WHERE food_name LIKE %s OR food_id = %s"
         params.append("%%%s%%" % keywords)
         params.append(keywords)
-    _SQL += """LIMIT %s, %s """
+    _SQL += """ ORDER BY concat( like_count, collect_count ) LIMIT %s, %s """
     params.append((page_num - 1) * page_size)
     params.append(page_size)
     with UseDatabase(current_app.config['dbconfig']) as cursor:
