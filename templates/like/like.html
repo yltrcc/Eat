@@ -22,7 +22,7 @@
 {% block main_content %}
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
         <h1 class="page-header">喜爱排名</h1>
-        <form action="/food/list" method="get" id="listForm">
+        <form action="/like/list" method="get" id="listForm">
             <input type="hidden" name="page_num" value="{{ page.current_page }}"/>
             <input type="text" name="keywords" placeholder="此处填写食物名字或编号" value="{{ keywords }}"/>
             <input type="submit" value="搜索"/>

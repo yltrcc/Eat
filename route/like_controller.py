@@ -19,7 +19,7 @@ def to_list() -> 'html':
     keywords = keywords.rstrip().lstrip()
     page_num = request.args.get("page_num", type=str, default=1)
     page_num = int(page_num)
-    page_size = request.args.get("page_size", type=str, default=5)
+    page_size = request.args.get("page_size", type=str, default=50)
     page_size = int(page_size)
     _SQL = "SELECT food_id, food_name, food_cal, taste, location, recorde, add_time, like_count, collect_count FROM tb_food "
     params = []
